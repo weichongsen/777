@@ -1,0 +1,356 @@
+.admin-nav {
+    background: rgba(255, 77, 109, 0.1);
+    border-bottom: 1px solid rgba(255, 77, 109, 0.3);
+}
+
+.admin-nav .logo-icon {
+    background: linear-gradient(135deg, #FF4D6D, #6E00FF);
+}
+
+.admin-nav .nav-item.active {
+    color: #FF4D6D;
+    border-bottom-color: #FF4D6D;
+}
+
+.admin-container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.admin-card {
+    background: rgba(11, 16, 32, 0.8);
+    border: 1px solid rgba(255, 77, 109, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(15px);
+}
+
+.admin-card.wide-card {
+    grid-column: 1 / -1;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    font-size: 28px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    color: #fff;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.upload-area {
+    padding: 40px;
+    background: rgba(255, 77, 109, 0.05);
+    border: 2px dashed rgba(255, 77, 109, 0.3);
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.upload-area:hover {
+    border-color: #FF4D6D;
+    background: rgba(255, 77, 109, 0.1);
+}
+
+.upload-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.upload-area p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.upload-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.audio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.audio-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 77, 109, 0.05);
+    border-radius: 10px;
+}
+
+.audio-name {
+    flex: 1;
+    font-size: 14px;
+    color: #fff;
+}
+
+.audio-action {
+    padding: 8px 15px;
+    background: rgba(255, 77, 109, 0.1);
+    border: 1px solid rgba(255, 77, 109, 0.3);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.audio-action:hover {
+    background: rgba(255, 77, 109, 0.2);
+}
+
+.audio-action.delete {
+    color: #FF4D6D;
+}
+
+.sound-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sound-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 77, 109, 0.05);
+    border-radius: 10px;
+}
+
+.sound-name {
+    flex: 1;
+    font-size: 14px;
+    color: #fff;
+}
+
+.sound-action {
+    padding: 8px 15px;
+    background: rgba(0, 245, 255, 0.05);
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sound-action:hover {
+    background: rgba(0, 245, 255, 0.15);
+    border-color: #00F5FF;
+}
+
+.sound-action.upload {
+    background: rgba(0, 255, 157, 0.1);
+    border-color: rgba(0, 255, 157, 0.3);
+    color: #00FF9D;
+}
+
+.sound-action.upload:hover {
+    background: rgba(0, 255, 157, 0.2);
+}
+
+.api-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.api-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.api-form label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.api-form .form-input {
+    padding: 12px;
+    background: rgba(255, 77, 109, 0.05);
+    border: 1px solid rgba(255, 77, 109, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.api-form .form-input:focus {
+    border-color: #FF4D6D;
+}
+
+.api-btn {
+    padding: 12px;
+    background: rgba(255, 77, 109, 0.05);
+    border: 1px solid rgba(255, 77, 109, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.api-btn:hover {
+    background: rgba(255, 77, 109, 0.15);
+    border-color: #FF4D6D;
+}
+
+.api-btn.primary {
+    background: linear-gradient(135deg, #FF4D6D, #6E00FF);
+    border-color: transparent;
+}
+
+.api-btn.primary:hover {
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+@media (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 77, 109, 0.05);
+    border-radius: 10px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF4D6D;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.log-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: rgba(255, 77, 109, 0.05);
+    border-radius: 8px;
+}
+
+.log-time {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.log-type {
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.log-type.success {
+    background: rgba(0, 255, 157, 0.2);
+    color: #00FF9D;
+}
+
+.log-type.warning {
+    background: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+}
+
+.log-type.error {
+    background: rgba(255, 77, 109, 0.2);
+    color: #FF4D6D;
+}
+
+.log-message {
+    flex: 1;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.log-btn {
+    padding: 10px 25px;
+    background: rgba(255, 77, 109, 0.05);
+    border: 1px solid rgba(255, 77, 109, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.log-btn:hover {
+    background: rgba(255, 77, 109, 0.15);
+    border-color: #FF4D6D;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background: rgba(255, 77, 109, 0.1);
+    border: 1px solid rgba(255, 77, 109, 0.3);
+    border-radius: 8px;
+    color: #FF4D6D;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 77, 109, 0.2);
+}
