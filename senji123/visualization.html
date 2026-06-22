@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - 数据可视化中心</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/visualization.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">AI</span>
+            <span class="logo-text">彩票预测专家</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item">控制中心</a>
+            <a href="lotto.html" class="nav-item">大乐透</a>
+            <a href="double-color.html" class="nav-item">双色球</a>
+            <a href="predictions.html" class="nav-item">预测中心</a>
+            <a href="analysis.html" class="nav-item">数据分析</a>
+            <a href="ai-lab.html" class="nav-item">AI实验室</a>
+            <a href="visualization.html" class="nav-item active">可视化</a>
+            <a href="lottery-sim.html" class="nav-item">摇奖模拟</a>
+        </div>
+        <div class="nav-user">
+            <a href="profile.html" class="user-icon">👤</a>
+            <a href="admin.html" class="admin-icon">⚙️</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">ECharts数据可视化中心</h1>
+        <p class="page-subtitle">科技风深色主题动态图表</p>
+    </header>
+
+    <main class="visualization-container">
+        <div class="filter-section">
+            <div class="filter-row">
+                <div class="filter-item">
+                    <label>彩种</label>
+                    <select id="lotteryType">
+                        <option value="lotto">大乐透</option>
+                        <option value="double-color">双色球</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>时间范围</label>
+                    <select id="timeRange">
+                        <option value="7d">近7天</option>
+                        <option value="30d">近30天</option>
+                        <option value="90d">近90天</option>
+                    </select>
+                </div>
+                <button class="refresh-btn" id="refreshCharts">
+                    <span>🔄</span>
+                    <span>刷新图表</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-card large-card">
+                <div class="card-header">
+                    <span class="card-icon">📈</span>
+                    <h3>热号趋势图</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="hotTrendChart" style="width: 100%; height: 300px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="card-header">
+                    <span class="card-icon">❄️</span>
+                    <h3>冷号趋势图</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="coldTrendChart" style="width: 100%; height: 250px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <h3>遗漏走势图</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="missTrendChart" style="width: 100%; height: 250px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card large-card">
+                <div class="card-header">
+                    <span class="card-icon">🔥</span>
+                    <h3>号码热力图</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="heatmapChart" style="width: 100%; height: 300px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="card-header">
+                    <span class="card-icon">⚖️</span>
+                    <h3>奇偶比例</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="parityPieChart" style="width: 100%; height: 250px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="card-header">
+                    <span class="card-icon">📐</span>
+                    <h3>大小比例</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="sizePieChart" style="width: 100%; height: 250px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card large-card">
+                <div class="card-header">
+                    <span class="card-icon">⭐</span>
+                    <h3>AI评分走势</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="scoreTrendChart" style="width: 100%; height: 300px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="card-header">
+                    <span class="card-icon">📉</span>
+                    <h3>和值分布</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="sumDistChart" style="width: 100%; height: 250px;"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <h3>连号频率</h3>
+                </div>
+                <div class="chart-container">
+                    <div id="consecChart" style="width: 100%; height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - Cyberpunk Ultimate Edition</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/visualization.js"></script>
+</body>
+</html>

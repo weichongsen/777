@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - AI实验室</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/ai-lab.css">
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">AI</span>
+            <span class="logo-text">彩票预测专家</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item">控制中心</a>
+            <a href="lotto.html" class="nav-item">大乐透</a>
+            <a href="double-color.html" class="nav-item">双色球</a>
+            <a href="predictions.html" class="nav-item">预测中心</a>
+            <a href="analysis.html" class="nav-item">数据分析</a>
+            <a href="ai-lab.html" class="nav-item active">AI实验室</a>
+            <a href="visualization.html" class="nav-item">可视化</a>
+            <a href="lottery-sim.html" class="nav-item">摇奖模拟</a>
+        </div>
+        <div class="nav-user">
+            <a href="profile.html" class="user-icon">👤</a>
+            <a href="admin.html" class="admin-icon">⚙️</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">高级AI实验室</h1>
+        <p class="page-subtitle">自定义AI预测引擎参数</p>
+    </header>
+
+    <main class="ai-lab-container">
+        <div class="lab-section">
+            <h2 class="section-title">🎯 自定义权重设置</h2>
+            <p class="section-desc">调整各项分析指标的权重比例，影响AI预测结果</p>
+            
+            <div class="weights-grid">
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">🔥</span>
+                        <span class="weight-name">热号权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="20" class="slider" id="hotWeight">
+                        <span class="weight-value">20%</span>
+                    </div>
+                </div>
+                
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">❄️</span>
+                        <span class="weight-name">冷号权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="10" class="slider" id="coldWeight">
+                        <span class="weight-value">10%</span>
+                    </div>
+                </div>
+                
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">📊</span>
+                        <span class="weight-name">遗漏权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="20" class="slider" id="missWeight">
+                        <span class="weight-value">20%</span>
+                    </div>
+                </div>
+                
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">📈</span>
+                        <span class="weight-name">和值权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="10" class="slider" id="sumWeight">
+                        <span class="weight-value">10%</span>
+                    </div>
+                </div>
+                
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">⚖️</span>
+                        <span class="weight-name">奇偶权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="5" class="slider" id="parityWeight">
+                        <span class="weight-value">5%</span>
+                    </div>
+                </div>
+                
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">🧠</span>
+                        <span class="weight-name">马尔可夫权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="20" class="slider" id="markovWeight">
+                        <span class="weight-value">20%</span>
+                    </div>
+                </div>
+                
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">🎲</span>
+                        <span class="weight-name">蒙特卡洛权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="15" class="slider" id="monteWeight">
+                        <span class="weight-value">15%</span>
+                    </div>
+                </div>
+                
+                <div class="weight-card">
+                    <div class="weight-header">
+                        <span class="weight-icon">🔗</span>
+                        <span class="weight-name">连号权重</span>
+                    </div>
+                    <div class="weight-slider">
+                        <input type="range" min="0" max="50" value="10" class="slider" id="consecWeight">
+                        <span class="weight-value">10%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="total-weight">
+                <span class="total-label">总权重</span>
+                <span class="total-value" id="totalWeight">110%</span>
+                <span class="total-status warning">超出推荐范围</span>
+            </div>
+            
+            <div class="weight-actions">
+                <button class="action-btn" id="resetWeights">重置默认</button>
+                <button class="action-btn primary" id="saveWeights">保存配置</button>
+            </div>
+        </div>
+
+        <div class="lab-section">
+            <h2 class="section-title">🤖 AI策略模式</h2>
+            <p class="section-desc">选择预设的AI预测策略模式</p>
+            
+            <div class="strategy-grid">
+                <button class="strategy-card" id="strategyConservative">
+                    <div class="strategy-icon">🛡️</div>
+                    <div class="strategy-name">稳健模式</div>
+                    <div class="strategy-desc">优先选择热门号码，风险低</div>
+                    <div class="strategy-tag">低风险</div>
+                </button>
+                
+                <button class="strategy-card" id="strategyBalanced">
+                    <div class="strategy-icon">⚖️</div>
+                    <div class="strategy-name">平衡模式</div>
+                    <div class="strategy-desc">均衡考虑冷热号码，中等风险</div>
+                    <div class="strategy-tag">中风险</div>
+                </button>
+                
+                <button class="strategy-card active" id="strategyAggressive">
+                    <div class="strategy-icon">🔥</div>
+                    <div class="strategy-name">激进模式</div>
+                    <div class="strategy-desc">倾向选择冷号，高回报潜力</div>
+                    <div class="strategy-tag">高风险</div>
+                </button>
+                
+                <button class="strategy-card" id="strategyExtreme">
+                    <div class="strategy-icon">💥</div>
+                    <div class="strategy-name">极限模式</div>
+                    <div class="strategy-desc">完全随机算法，极高风险</div>
+                    <div class="strategy-tag">极高风险</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="lab-section">
+            <h2 class="section-title">⚡ 高级算法设置</h2>
+            <p class="section-desc">调整蒙特卡洛模拟参数</p>
+            
+            <div class="advanced-settings">
+                <div class="setting-card">
+                    <label class="setting-label">蒙特卡洛模拟次数</label>
+                    <div class="setting-options">
+                        <button class="option-btn" data-value="1000">1000次</button>
+                        <button class="option-btn" data-value="10000">10000次</button>
+                        <button class="option-btn active" data-value="50000">50000次</button>
+                        <button class="option-btn" data-value="100000">100000次</button>
+                    </div>
+                </div>
+                
+                <div class="setting-card">
+                    <label class="setting-label">马尔可夫链阶数</label>
+                    <div class="setting-options">
+                        <button class="option-btn active" data-value="1">1阶</button>
+                        <button class="option-btn" data-value="2">2阶</button>
+                        <button class="option-btn" data-value="3">3阶</button>
+                    </div>
+                </div>
+                
+                <div class="setting-card">
+                    <label class="setting-label">贝叶斯先验概率</label>
+                    <input type="range" min="0" max="100" value="50" class="slider" id="bayesPrior">
+                    <span class="slider-value">50%</span>
+                </div>
+            </div>
+            
+            <button class="run-simulation-btn" id="runSimulation">
+                <span class="btn-icon">🚀</span>
+                <span>运行模拟分析</span>
+            </button>
+        </div>
+
+        <div class="lab-section results-section">
+            <h2 class="section-title">📊 模拟结果</h2>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">🎯</div>
+                    <div class="result-label">综合评分</div>
+                    <div class="result-value">94.2%</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">💯</div>
+                    <div class="result-label">可信度</div>
+                    <div class="result-value">高</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">⭐</div>
+                    <div class="result-label">评级</div>
+                    <div class="result-value SS">SS</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">⏱️</div>
+                    <div class="result-label">模拟耗时</div>
+                    <div class="result-value">2.3秒</div>
+                </div>
+            </div>
+            
+            <div class="prediction-result">
+                <div class="result-header">
+                    <span class="result-title">推荐号码</span>
+                    <span class="result-lottery">大乐透</span>
+                </div>
+                <div class="result-balls">
+                    <span class="ball red">07</span>
+                    <span class="ball red">14</span>
+                    <span class="ball red">21</span>
+                    <span class="ball red">28</span>
+                    <span class="ball red">35</span>
+                    <span class="ball blue">04</span>
+                    <span class="ball blue">10</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - Cyberpunk Ultimate Edition</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/ai-lab.js"></script>
+</body>
+</html>

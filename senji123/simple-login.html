@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简化登录测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        form {
+            background: #2a2a4e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #00aaff;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #444;
+            cursor: not-allowed;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: none;
+        }
+        .status.show {
+            display: block;
+        }
+        .success { background: #00ff00; color: #000; }
+        .error { background: #ff0000; color: #fff; }
+        .info { background: #00aaff; color: #000; }
+        #logs {
+            background: #1a1a2e;
+            padding: 10px;
+            border-radius: 5px;
+            height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>简化登录测试</h1>
+    <div id="status" class="status info"></div>
+    
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="邮箱" required>
+        <input type="password" id="password" placeholder="密码" required>
+        <button type="submit" id="loginBtn">登录</button>
+    </form>
+    
+    <div id="logs"></div>
+
+    <script src="lib/supabase.js"></script>
+    <script>
+        const URL = 'https://kltgecxywsajonxjsawz.supabase.co';
+        const KEY = 'sb_publishable_3C8V8U4lPZUQ0xDYFzBLWA_2I_yR6q8';
+        
+        let client = null;
+        
+        function log(message) {
+            const logs = document.getElementById('logs');
+            logs.innerHTML += `[${new Date().toLocaleTimeString()}] ${message}\n`;
+            logs.scrollTop = logs.scrollHeight;
+            console.log(message);
+        }
+        
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type} show`;
+        }
+        
+        async function init() {
+            log('初始化 Supabase...');
+            
+            if (typeof window.supabase === 'undefined') {
+                log('错误：Supabase SDK 未加载');
+                showStatus('SDK 加载失败', 'error');
+                return;
+            }
+            
+            try {
+                client = window.supabase.createClient(URL, KEY, {
+                    auth: {
+                        persistSession: true,
+                        autoRefreshToken: true
+                    }
+                });
+                log('Supabase 客户端创建成功');
+                showStatus('Supabase 已就绪', 'success');
+                
+                // 检查当前会话
+                const { data: { session } } = await client.auth.getSession();
+                if (session) {
+                    log('检测到已有会话，用户已登录');
+                    showStatus('已登录，正在跳转...', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 1000);
+                } else {
+                    log('未检测到会话');
+                }
+            } catch (err) {
+                log('初始化失败: ' + err.message);
+                showStatus('初始化失败: ' + err.message, 'error');
+            }
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            
+            btn.disabled = true;
+            btn.textContent = '登录中...';
+            showStatus('登录中...', 'info');
+            
+            log('开始登录，邮箱: ' + email);
+            
+            try {
+                const { data, error } = await client.auth.signInWithPassword({
+                    email,
+                    password
+                });
+                
+                if (error) {
+                    log('登录失败: ' + error.message);
+                    showStatus('登录失败: ' + error.message, 'error');
+                } else if (data && data.session) {
+                    log('登录成功！用户ID: ' + data.session.user.id);
+                    showStatus('登录成功！正在跳转...', 'success');
+                    
+                    // 验证会话是否保存
+                    setTimeout(async () => {
+                        const { data: { session } } = await client.auth.getSession();
+                        if (session) {
+                            log('会话已保存，跳转首页');
+                            window.location.href = 'index.html';
+                        } else {
+                            log('警告：会话未保存');
+                            showStatus('会话保存异常，请重试', 'error');
+                        }
+                    }, 300);
+                } else {
+                    log('登录返回数据异常');
+                    showStatus('登录异常，请重试', 'error');
+                }
+            } catch (err) {
+                log('登录异常: ' + err.message);
+                showStatus('登录异常: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '登录';
+                log('按钮状态已恢复');
+            }
+        });
+        
+        // 页面加载后初始化
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

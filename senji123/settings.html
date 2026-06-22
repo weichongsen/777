@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - 系统设置</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">AI</span>
+            <span class="logo-text">彩票预测专家</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item">控制中心</a>
+            <a href="lotto.html" class="nav-item">大乐透</a>
+            <a href="double-color.html" class="nav-item">双色球</a>
+            <a href="predictions.html" class="nav-item">预测中心</a>
+            <a href="analysis.html" class="nav-item">数据分析</a>
+            <a href="ai-lab.html" class="nav-item">AI实验室</a>
+            <a href="visualization.html" class="nav-item">可视化</a>
+            <a href="lottery-sim.html" class="nav-item">摇奖模拟</a>
+        </div>
+        <div class="nav-user">
+            <a href="profile.html" class="user-icon">👤</a>
+            <a href="admin.html" class="admin-icon">⚙️</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">系统设置</h1>
+        <p class="page-subtitle">自定义您的体验</p>
+    </header>
+
+    <main class="settings-container">
+        <div class="settings-section">
+            <h2 class="section-title">🎨 主题设置</h2>
+            <div class="theme-grid">
+                <button class="theme-card active" data-theme="tech-blue">
+                    <div class="theme-preview tech-blue"></div>
+                    <span class="theme-name">科技蓝</span>
+                </button>
+                <button class="theme-card" data-theme="cyberpunk">
+                    <div class="theme-preview cyberpunk"></div>
+                    <span class="theme-name">赛博朋克</span>
+                </button>
+                <button class="theme-card" data-theme="ai-purple">
+                    <div class="theme-preview ai-purple"></div>
+                    <span class="theme-name">AI紫</span>
+                </button>
+                <button class="theme-card" data-theme="deep-space">
+                    <div class="theme-preview deep-space"></div>
+                    <span class="theme-name">深空黑</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2 class="section-title">⚙️ 功能开关</h2>
+            <div class="toggle-list">
+                <div class="toggle-item">
+                    <div class="toggle-info">
+                        <span class="toggle-icon">✨</span>
+                        <span class="toggle-label">动画效果</span>
+                        <span class="toggle-desc">启用页面动画和过渡效果</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-item">
+                    <div class="toggle-info">
+                        <span class="toggle-icon">🔊</span>
+                        <span class="toggle-label">音效</span>
+                        <span class="toggle-desc">启用摇奖和交互音效</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-item">
+                    <div class="toggle-info">
+                        <span class="toggle-icon">🔔</span>
+                        <span class="toggle-label">推送通知</span>
+                        <span class="toggle-desc">接收开奖结果和预测提醒</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-item">
+                    <div class="toggle-info">
+                        <span class="toggle-icon">🌙</span>
+                        <span class="toggle-label">深色模式</span>
+                        <span class="toggle-desc">使用深色主题显示</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2 class="section-title">📥 数据管理</h2>
+            <div class="data-actions">
+                <button class="data-btn" id="exportJson">
+                    <span class="btn-icon">📄</span>
+                    <span>导出 JSON</span>
+                </button>
+                <button class="data-btn" id="exportExcel">
+                    <span class="btn-icon">📊</span>
+                    <span>导出 Excel</span>
+                </button>
+                <button class="data-btn" id="exportTxt">
+                    <span class="btn-icon">📝</span>
+                    <span>导出 TXT</span>
+                </button>
+                <button class="data-btn" id="importData">
+                    <span class="btn-icon">📥</span>
+                    <span>导入数据</span>
+                    <input type="file" class="file-input" accept=".json,.xlsx,.txt">
+                </button>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2 class="section-title">🗑️ 系统维护</h2>
+            <div class="maintenance-actions">
+                <button class="maintenance-btn" id="clearCache">
+                    <span class="btn-icon">🧹</span>
+                    <span>清理缓存</span>
+                </button>
+                <button class="maintenance-btn" id="resetSettings">
+                    <span class="btn-icon">🔄</span>
+                    <span>重置设置</span>
+                </button>
+                <button class="maintenance-btn danger" id="deleteAccount">
+                    <span class="btn-icon">🗑️</span>
+                    <span>删除账户</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2 class="section-title">ℹ️ 关于</h2>
+            <div class="about-info">
+                <div class="about-item">
+                    <span class="about-label">版本</span>
+                    <span class="about-value">v1.0.0</span>
+                </div>
+                <div class="about-item">
+                    <span class="about-label">更新日期</span>
+                    <span class="about-value">2024-06-21</span>
+                </div>
+                <div class="about-item">
+                    <span class="about-label">开发者</span>
+                    <span class="about-value">AI彩票预测专家团队</span>
+                </div>
+                <div class="about-item">
+                    <span class="about-label">技术支持</span>
+                    <span class="about-value">support@ailottery.com</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - Cyberpunk Ultimate Edition</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/settings.js"></script>
+</body>
+</html>
