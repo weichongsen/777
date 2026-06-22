@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票模拟 - 注册</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body class="register-page">
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <div class="register-container">
+        <div class="register-header">
+            <h1 class="register-title">AI彩票模拟</h1>
+            <p class="register-subtitle">Cyberpunk Ultimate Edition</p>
+            <div class="login-ai-core">
+                <div class="core-ring"></div>
+                <div class="core-ring"></div>
+                <div class="core-center">AI</div>
+            </div>
+        </div>
+        
+        <form class="register-form" id="registerForm">
+            <div class="form-group">
+                <label class="form-label">用户名</label>
+                <input type="text" class="form-input" id="username" placeholder="请输入用户名" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">邮箱地址</label>
+                <input type="email" class="form-input" id="email" placeholder="请输入邮箱" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">密码</label>
+                <input type="password" class="form-input" id="password" placeholder="请输入密码" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">确认密码</label>
+                <input type="password" class="form-input" id="confirmPassword" placeholder="请确认密码" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-checkbox">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <span>我同意服务条款和隐私政策</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="form-btn">
+                <span class="btn-text">注册</span>
+                <span class="btn-icon">→</span>
+            </button>
+            
+            <div class="form-link">
+                <a href="login.html">已有账号？立即登录</a>
+            </div>
+        </form>
+        
+        <div class="register-footer">
+            <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+        </div>
+    </div>
+    
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/register.js"></script>
+</body>
+</html>

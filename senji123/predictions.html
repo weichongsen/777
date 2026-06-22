@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - 预测中心</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/predictions.css">
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">AI</span>
+            <span class="logo-text">彩票预测专家</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item">控制中心</a>
+            <a href="lotto.html" class="nav-item">大乐透</a>
+            <a href="double-color.html" class="nav-item">双色球</a>
+            <a href="predictions.html" class="nav-item active">预测中心</a>
+            <a href="analysis.html" class="nav-item">数据分析</a>
+            <a href="ai-lab.html" class="nav-item">AI实验室</a>
+            <a href="visualization.html" class="nav-item">可视化</a>
+            <a href="lottery-sim.html" class="nav-item">摇奖模拟</a>
+        </div>
+        <div class="nav-user">
+            <a href="profile.html" class="user-icon">👤</a>
+            <a href="admin.html" class="admin-icon">⚙️</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">AI预测中心</h1>
+        <p class="page-subtitle">查看最新AI预测结果</p>
+    </header>
+
+    <main class="predictions-container">
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label class="filter-label">彩种选择</label>
+                <select class="filter-select" id="lotteryType">
+                    <option value="all">全部</option>
+                    <option value="lotto">大乐透</option>
+                    <option value="double-color">双色球</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">评级筛选</label>
+                <select class="filter-select" id="ratingFilter">
+                    <option value="all">全部评级</option>
+                    <option value="SSS">SSS</option>
+                    <option value="SS">SS</option>
+                    <option value="S">S</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+            <button class="refresh-btn" id="refreshBtn">
+                <span>🔄</span>
+                <span>刷新预测</span>
+            </button>
+        </div>
+
+        <div class="prediction-cards">
+            <div class="prediction-card featured">
+                <div class="card-badge">🔥 今日推荐</div>
+                <div class="card-header">
+                    <span class="lottery-type">大乐透</span>
+                    <span class="rating SSS">SSS</span>
+                </div>
+                <div class="card-balls">
+                    <span class="ball red">05</span>
+                    <span class="ball red">12</span>
+                    <span class="ball red">18</span>
+                    <span class="ball red">24</span>
+                    <span class="ball red">31</span>
+                    <span class="ball blue">03</span>
+                    <span class="ball blue">09</span>
+                </div>
+                <div class="card-stats">
+                    <div class="stat">
+                        <span class="stat-label">综合评分</span>
+                        <span class="stat-value highlight">97.8%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">可信度</span>
+                        <span class="stat-value">极高</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">预测时间</span>
+                        <span class="stat-value">刚刚</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn primary">立即使用</button>
+                    <button class="action-btn">收藏</button>
+                </div>
+            </div>
+
+            <div class="prediction-card">
+                <div class="card-header">
+                    <span class="lottery-type">双色球</span>
+                    <span class="rating SS">SS</span>
+                </div>
+                <div class="card-balls">
+                    <span class="ball red">02</span>
+                    <span class="ball red">08</span>
+                    <span class="ball red">15</span>
+                    <span class="ball red">22</span>
+                    <span class="ball red">27</span>
+                    <span class="ball red">33</span>
+                    <span class="ball blue">08</span>
+                </div>
+                <div class="card-stats">
+                    <div class="stat">
+                        <span class="stat-label">综合评分</span>
+                        <span class="stat-value">92.5%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">可信度</span>
+                        <span class="stat-value">高</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn">使用</button>
+                    <button class="action-btn">收藏</button>
+                </div>
+            </div>
+
+            <div class="prediction-card">
+                <div class="card-header">
+                    <span class="lottery-type">大乐透</span>
+                    <span class="rating S">S</span>
+                </div>
+                <div class="card-balls">
+                    <span class="ball red">01</span>
+                    <span class="ball red">10</span>
+                    <span class="ball red">19</span>
+                    <span class="ball red">26</span>
+                    <span class="ball red">35</span>
+                    <span class="ball blue">06</span>
+                    <span class="ball blue">12</span>
+                </div>
+                <div class="card-stats">
+                    <div class="stat">
+                        <span class="stat-label">综合评分</span>
+                        <span class="stat-value">88.3%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">可信度</span>
+                        <span class="stat-value">中高</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn">使用</button>
+                    <button class="action-btn">收藏</button>
+                </div>
+            </div>
+
+            <div class="prediction-card">
+                <div class="card-header">
+                    <span class="lottery-type">双色球</span>
+                    <span class="rating A">A</span>
+                </div>
+                <div class="card-balls">
+                    <span class="ball red">04</span>
+                    <span class="ball red">11</span>
+                    <span class="ball red">17</span>
+                    <span class="ball red">23</span>
+                    <span class="ball red">28</span>
+                    <span class="ball red">31</span>
+                    <span class="ball blue">14</span>
+                </div>
+                <div class="card-stats">
+                    <div class="stat">
+                        <span class="stat-label">综合评分</span>
+                        <span class="stat-value">84.6%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">可信度</span>
+                        <span class="stat-value">中等</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <button class="action-btn">使用</button>
+                    <button class="action-btn">收藏</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="rating-explanation">
+            <h3>AI评级体系说明</h3>
+            <div class="rating-categories">
+                <div class="rating-item">
+                    <span class="rating-badge SSS">SSS</span>
+                    <span class="rating-desc">最高评级，可信度极高</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-badge SS">SS</span>
+                    <span class="rating-desc">优秀评级，可信度高</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-badge S">S</span>
+                    <span class="rating-desc">良好评级，可信度中高</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-badge A">A</span>
+                    <span class="rating-desc">一般评级，可信度中等</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-badge B">B</span>
+                    <span class="rating-desc">较低评级，建议参考</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - Cyberpunk Ultimate Edition</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/predictions.js"></script>
+</body>
+</html>
