@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - 管理员后台</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav admin-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">ADMIN</span>
+            <span class="logo-text">管理员后台</span>
+        </div>
+        <div class="nav-menu">
+            <a href="admin.html" class="nav-item active">数据管理</a>
+            <a href="admin-users.html" class="nav-item">用户管理</a>
+            <a href="admin-vip.html" class="nav-item">VIP管理</a>
+            <a href="admin-settings.html" class="nav-item">系统设置</a>
+        </div>
+        <div class="nav-user">
+            <button class="logout-btn" onclick="logout()">退出</button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">管理员数据管理</h1>
+        <p class="page-subtitle">管理网站数据和配置</p>
+    </header>
+
+    <main class="admin-container">
+        <div class="admin-grid">
+            <div class="admin-card">
+                <div class="card-header">
+                    <span class="card-icon">🎵</span>
+                    <h3>音频管理</h3>
+                </div>
+                <div class="card-content">
+                    <div class="upload-area" id="audioUpload">
+                        <span class="upload-icon">📤</span>
+                        <p>上传背景音乐</p>
+                        <input type="file" class="upload-input" accept="audio/*">
+                    </div>
+                    <div class="audio-list">
+                        <div class="audio-item">
+                            <span class="audio-name">background.mp3</span>
+                            <button class="audio-action">播放</button>
+                            <button class="audio-action delete">删除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <span class="card-icon">🔊</span>
+                    <h3>音效管理</h3>
+                </div>
+                <div class="card-content">
+                    <div class="sound-options">
+                        <div class="sound-item">
+                            <span class="sound-name">摇奖音效</span>
+                            <button class="sound-action">预览</button>
+                            <button class="sound-action upload">更换</button>
+                        </div>
+                        <div class="sound-item">
+                            <span class="sound-name">中奖音效</span>
+                            <button class="sound-action">预览</button>
+                            <button class="sound-action upload">更换</button>
+                        </div>
+                        <div class="sound-item">
+                            <span class="sound-name">点击音效</span>
+                            <button class="sound-action">预览</button>
+                            <button class="sound-action upload">更换</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <span class="card-icon">🔌</span>
+                    <h3>API配置</h3>
+                </div>
+                <div class="card-content">
+                    <div class="api-form">
+                        <div class="form-group">
+                            <label>开奖API地址</label>
+                            <input type="url" class="form-input" value="https://api.example.com/lottery">
+                        </div>
+                        <div class="form-group">
+                            <label>API密钥</label>
+                            <input type="password" class="form-input" value="********">
+                        </div>
+                        <div class="form-group">
+                            <label>自动更新间隔(分钟)</label>
+                            <input type="number" class="form-input" value="30">
+                        </div>
+                        <button class="api-btn" id="testApi">测试连接</button>
+                        <button class="api-btn primary" id="saveApi">保存配置</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <h3>数据统计</h3>
+                </div>
+                <div class="card-content">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-value">1,234</span>
+                            <span class="stat-label">注册用户</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">567</span>
+                            <span class="stat-label">活跃用户</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">89</span>
+                            <span class="stat-label">VIP用户</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">12,580</span>
+                            <span class="stat-label">预测次数</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card wide-card">
+                <div class="card-header">
+                    <span class="card-icon">📈</span>
+                    <h3>系统日志</h3>
+                </div>
+                <div class="card-content">
+                    <div class="log-list" id="logList">
+                        <div class="log-item">
+                            <span class="log-time">2024-06-21 14:30:25</span>
+                            <span class="log-type success">INFO</span>
+                            <span class="log-message">用户登录成功</span>
+                        </div>
+                        <div class="log-item">
+                            <span class="log-time">2024-06-21 14:28:10</span>
+                            <span class="log-type warning">WARN</span>
+                            <span class="log-message">API请求超时</span>
+                        </div>
+                        <div class="log-item">
+                            <span class="log-time">2024-06-21 14:25:00</span>
+                            <span class="log-type error">ERROR</span>
+                            <span class="log-message">数据库连接失败</span>
+                        </div>
+                    </div>
+                    <button class="log-btn" id="clearLogs">清空日志</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - 管理员后台</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - 大乐透</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/lottery.css">
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">AI</span>
+            <span class="logo-text">彩票预测专家</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item">控制中心</a>
+            <a href="lotto.html" class="nav-item active">大乐透</a>
+            <a href="double-color.html" class="nav-item">双色球</a>
+            <a href="predictions.html" class="nav-item">预测中心</a>
+            <a href="analysis.html" class="nav-item">数据分析</a>
+            <a href="ai-lab.html" class="nav-item">AI实验室</a>
+            <a href="visualization.html" class="nav-item">可视化</a>
+            <a href="lottery-sim.html" class="nav-item">摇奖模拟</a>
+        </div>
+        <div class="nav-user">
+            <a href="profile.html" class="user-icon">👤</a>
+            <a href="admin.html" class="admin-icon">⚙️</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">大乐透 AI 预测</h1>
+        <p class="page-subtitle">前区 1-35 选5 | 后区 1-12 选2</p>
+    </header>
+
+    <main class="lottery-container">
+        <div class="number-selection">
+            <div class="selection-section">
+                <h3 class="section-title">前区号码 (选5)</h3>
+                <div class="number-grid" id="frontGrid">
+                    <button class="num-btn" data-num="01">01</button>
+                    <button class="num-btn" data-num="02">02</button>
+                    <button class="num-btn" data-num="03">03</button>
+                    <button class="num-btn" data-num="04">04</button>
+                    <button class="num-btn" data-num="05">05</button>
+                    <button class="num-btn" data-num="06">06</button>
+                    <button class="num-btn" data-num="07">07</button>
+                    <button class="num-btn" data-num="08">08</button>
+                    <button class="num-btn" data-num="09">09</button>
+                    <button class="num-btn" data-num="10">10</button>
+                    <button class="num-btn" data-num="11">11</button>
+                    <button class="num-btn" data-num="12">12</button>
+                    <button class="num-btn" data-num="13">13</button>
+                    <button class="num-btn" data-num="14">14</button>
+                    <button class="num-btn" data-num="15">15</button>
+                    <button class="num-btn" data-num="16">16</button>
+                    <button class="num-btn" data-num="17">17</button>
+                    <button class="num-btn" data-num="18">18</button>
+                    <button class="num-btn" data-num="19">19</button>
+                    <button class="num-btn" data-num="20">20</button>
+                    <button class="num-btn" data-num="21">21</button>
+                    <button class="num-btn" data-num="22">22</button>
+                    <button class="num-btn" data-num="23">23</button>
+                    <button class="num-btn" data-num="24">24</button>
+                    <button class="num-btn" data-num="25">25</button>
+                    <button class="num-btn" data-num="26">26</button>
+                    <button class="num-btn" data-num="27">27</button>
+                    <button class="num-btn" data-num="28">28</button>
+                    <button class="num-btn" data-num="29">29</button>
+                    <button class="num-btn" data-num="30">30</button>
+                    <button class="num-btn" data-num="31">31</button>
+                    <button class="num-btn" data-num="32">32</button>
+                    <button class="num-btn" data-num="33">33</button>
+                    <button class="num-btn" data-num="34">34</button>
+                    <button class="num-btn" data-num="35">35</button>
+                </div>
+            </div>
+
+            <div class="selection-section">
+                <h3 class="section-title">后区号码 (选2)</h3>
+                <div class="number-grid small" id="backGrid">
+                    <button class="num-btn" data-num="01">01</button>
+                    <button class="num-btn" data-num="02">02</button>
+                    <button class="num-btn" data-num="03">03</button>
+                    <button class="num-btn" data-num="04">04</button>
+                    <button class="num-btn" data-num="05">05</button>
+                    <button class="num-btn" data-num="06">06</button>
+                    <button class="num-btn" data-num="07">07</button>
+                    <button class="num-btn" data-num="08">08</button>
+                    <button class="num-btn" data-num="09">09</button>
+                    <button class="num-btn" data-num="10">10</button>
+                    <button class="num-btn" data-num="11">11</button>
+                    <button class="num-btn" data-num="12">12</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="selected-display">
+            <h3 class="section-title">已选号码</h3>
+            <div class="selected-balls">
+                <div class="ball-group">
+                    <span class="group-label">前区</span>
+                    <div class="balls" id="selectedFront"></div>
+                </div>
+                <div class="ball-group">
+                    <span class="group-label">后区</span>
+                    <div class="balls" id="selectedBack"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-panel">
+            <div class="action-row">
+                <button class="action-btn primary" id="aiPredictBtn">
+                    <span class="btn-icon">🤖</span>
+                    <span>AI预测</span>
+                </button>
+                <button class="action-btn" id="randomBtn">
+                    <span class="btn-icon">🎲</span>
+                    <span>随机选号</span>
+                </button>
+                <button class="action-btn" id="clearBtn">
+                    <span class="btn-icon">🗑️</span>
+                    <span>清空</span>
+                </button>
+            </div>
+            
+            <div class="prediction-options">
+                <label class="option-label">
+                    <input type="radio" name="predictionCount" value="1" checked>
+                    <span>预测1组</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="predictionCount" value="5">
+                    <span>预测5组</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="predictionCount" value="10">
+                    <span>预测10组</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="prediction-results" id="predictionResults">
+            <h3 class="section-title">AI预测结果</h3>
+            <div class="results-grid" id="resultsGrid"></div>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - Cyberpunk Ultimate Edition</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/lotto.js"></script>
+</body>
+</html>
