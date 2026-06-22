@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "777",
+  "compatibility_date": "2026-06-22",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "senji123"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
