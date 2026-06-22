@@ -1,6 +1,0 @@
-# Cloudflare Pages 重定向配置
-# 将根目录重定向到登录页面
-/ /login.html 302
-
-# 如果需要其他重定向，可以在这里添加
-# /old-path /new-path 301
