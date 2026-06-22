@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - 收藏中心</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/favorites.css">
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">AI</span>
+            <span class="logo-text">彩票预测专家</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item">控制中心</a>
+            <a href="lotto.html" class="nav-item">大乐透</a>
+            <a href="double-color.html" class="nav-item">双色球</a>
+            <a href="predictions.html" class="nav-item">预测中心</a>
+            <a href="analysis.html" class="nav-item">数据分析</a>
+            <a href="ai-lab.html" class="nav-item">AI实验室</a>
+            <a href="visualization.html" class="nav-item">可视化</a>
+            <a href="lottery-sim.html" class="nav-item">摇奖模拟</a>
+        </div>
+        <div class="nav-user">
+            <a href="profile.html" class="user-icon">👤</a>
+            <a href="admin.html" class="admin-icon">⚙️</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">号码收藏中心</h1>
+        <p class="page-subtitle">管理您收藏的彩票号码</p>
+    </header>
+
+    <main class="favorites-container">
+        <div class="filter-section">
+            <div class="filter-row">
+                <div class="filter-item">
+                    <label>彩种</label>
+                    <select id="lotteryType">
+                        <option value="all">全部</option>
+                        <option value="lotto">大乐透</option>
+                        <option value="double-color">双色球</option>
+                    </select>
+                </div>
+                <button class="action-btn" id="exportBtn">
+                    <span>📥</span>
+                    <span>导出数据</span>
+                </button>
+                <button class="action-btn" id="clearBtn">
+                    <span>🗑️</span>
+                    <span>清空收藏</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="favorites-list" id="favoritesList">
+            <div class="favorite-card">
+                <div class="card-header">
+                    <span class="lottery-type">大乐透</span>
+                    <span class="favorite-date">2024-06-20 14:30</span>
+                    <button class="delete-btn" onclick="removeFavorite(this)">删除</button>
+                </div>
+                <div class="card-balls">
+                    <span class="ball red">05</span>
+                    <span class="ball red">12</span>
+                    <span class="ball red">18</span>
+                    <span class="ball red">24</span>
+                    <span class="ball red">31</span>
+                    <span class="ball blue">03</span>
+                    <span class="ball blue">09</span>
+                </div>
+                <div class="card-footer">
+                    <span class="ai-score">AI评分: 92.5%</span>
+                    <button class="use-btn">立即使用</button>
+                </div>
+            </div>
+
+            <div class="favorite-card">
+                <div class="card-header">
+                    <span class="lottery-type">双色球</span>
+                    <span class="favorite-date">2024-06-19 10:15</span>
+                    <button class="delete-btn" onclick="removeFavorite(this)">删除</button>
+                </div>
+                <div class="card-balls">
+                    <span class="ball red">02</span>
+                    <span class="ball red">08</span>
+                    <span class="ball red">15</span>
+                    <span class="ball red">22</span>
+                    <span class="ball red">27</span>
+                    <span class="ball red">33</span>
+                    <span class="ball blue">08</span>
+                </div>
+                <div class="card-footer">
+                    <span class="ai-score">AI评分: 88.3%</span>
+                    <button class="use-btn">立即使用</button>
+                </div>
+            </div>
+
+            <div class="favorite-card">
+                <div class="card-header">
+                    <span class="lottery-type">大乐透</span>
+                    <span class="favorite-date">2024-06-18 16:45</span>
+                    <button class="delete-btn" onclick="removeFavorite(this)">删除</button>
+                </div>
+                <div class="card-balls">
+                    <span class="ball red">01</span>
+                    <span class="ball red">10</span>
+                    <span class="ball red">19</span>
+                    <span class="ball red">26</span>
+                    <span class="ball red">35</span>
+                    <span class="ball blue">06</span>
+                    <span class="ball blue">12</span>
+                </div>
+                <div class="card-footer">
+                    <span class="ai-score">AI评分: 95.2%</span>
+                    <button class="use-btn">立即使用</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <span class="empty-icon">❤️</span>
+            <p class="empty-text">暂无收藏的号码</p>
+            <button class="empty-btn" onclick="location.href='lotto.html'">去选号</button>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - Cyberpunk Ultimate Edition</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/favorites.js"></script>
+</body>
+</html>

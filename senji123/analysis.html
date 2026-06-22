@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI彩票预测专家 - 数据分析中心</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/analysis.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="moon-rays"></div>
+    <div class="hud-scanlines"></div>
+    
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="logo-icon">AI</span>
+            <span class="logo-text">彩票预测专家</span>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-item">控制中心</a>
+            <a href="lotto.html" class="nav-item">大乐透</a>
+            <a href="double-color.html" class="nav-item">双色球</a>
+            <a href="predictions.html" class="nav-item">预测中心</a>
+            <a href="analysis.html" class="nav-item active">数据分析</a>
+            <a href="ai-lab.html" class="nav-item">AI实验室</a>
+            <a href="visualization.html" class="nav-item">可视化</a>
+            <a href="lottery-sim.html" class="nav-item">摇奖模拟</a>
+        </div>
+        <div class="nav-user">
+            <a href="profile.html" class="user-icon">👤</a>
+            <a href="admin.html" class="admin-icon">⚙️</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">AI全维度数据分析中心</h1>
+        <p class="page-subtitle">深入分析彩票历史数据</p>
+    </header>
+
+    <main class="analysis-container">
+        <div class="filter-section">
+            <div class="filter-row">
+                <div class="filter-item">
+                    <label>彩种</label>
+                    <select id="lotteryType">
+                        <option value="lotto">大乐透</option>
+                        <option value="double-color">双色球</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>数据范围</label>
+                    <select id="dataRange">
+                        <option value="20">近20期</option>
+                        <option value="50">近50期</option>
+                        <option value="100">近100期</option>
+                        <option value="all">全部历史</option>
+                    </select>
+                </div>
+                <button class="apply-btn">应用筛选</button>
+            </div>
+        </div>
+
+        <div class="analysis-grid">
+            <div class="analysis-card" id="hotNumbers">
+                <div class="card-header">
+                    <span class="card-icon">🔥</span>
+                    <h3>热号分析 TOP10</h3>
+                </div>
+                <div class="card-content">
+                    <div class="hot-list">
+                        <div class="hot-item">
+                            <span class="hot-num">08</span>
+                            <span class="hot-count">28次</span>
+                            <div class="hot-bar">
+                                <div class="hot-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-num">15</span>
+                            <span class="hot-count">25次</span>
+                            <div class="hot-bar">
+                                <div class="hot-fill" style="width: 89%"></div>
+                            </div>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-num">23</span>
+                            <span class="hot-count">23次</span>
+                            <div class="hot-bar">
+                                <div class="hot-fill" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-num">03</span>
+                            <span class="hot-count">21次</span>
+                            <div class="hot-bar">
+                                <div class="hot-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-num">19</span>
+                            <span class="hot-count">19次</span>
+                            <div class="hot-bar">
+                                <div class="hot-fill" style="width: 68%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card" id="coldNumbers">
+                <div class="card-header">
+                    <span class="card-icon">❄️</span>
+                    <h3>冷号分析 TOP10</h3>
+                </div>
+                <div class="card-content">
+                    <div class="cold-list">
+                        <div class="cold-item">
+                            <span class="cold-num">04</span>
+                            <span class="cold-count">遗漏15期</span>
+                        </div>
+                        <div class="cold-item">
+                            <span class="cold-num">17</span>
+                            <span class="cold-count">遗漏12期</span>
+                        </div>
+                        <div class="cold-item">
+                            <span class="cold-num">33</span>
+                            <span class="cold-count">遗漏10期</span>
+                        </div>
+                        <div class="cold-item">
+                            <span class="cold-num">07</span>
+                            <span class="cold-count">遗漏8期</span>
+                        </div>
+                        <div class="cold-item">
+                            <span class="cold-num">29</span>
+                            <span class="cold-count">遗漏6期</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card" id="missAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <h3>遗漏分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="miss-stats">
+                        <div class="miss-item">
+                            <span class="miss-label">当前遗漏</span>
+                            <span class="miss-value">15期</span>
+                        </div>
+                        <div class="miss-item">
+                            <span class="miss-label">平均遗漏</span>
+                            <span class="miss-value">8.5期</span>
+                        </div>
+                        <div class="miss-item">
+                            <span class="miss-label">最大遗漏</span>
+                            <span class="miss-value">32期</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card" id="sumAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">📈</span>
+                    <h3>和值分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="sum-stats">
+                        <div class="sum-item">
+                            <span class="sum-label">当前和值</span>
+                            <span class="sum-value">89</span>
+                        </div>
+                        <div class="sum-item">
+                            <span class="sum-label">平均和值</span>
+                            <span class="sum-value">85.6</span>
+                        </div>
+                        <div class="sum-item">
+                            <span class="sum-label">和值区间</span>
+                            <span class="sum-value">65-110</span>
+                        </div>
+                    </div>
+                    <div id="sumChart" style="height: 150px; margin-top: 15px;"></div>
+                </div>
+            </div>
+
+            <div class="analysis-card" id="parityAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">⚖️</span>
+                    <h3>奇偶分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="parity-chart">
+                        <div class="parity-item odd">
+                            <div class="parity-circle">
+                                <span class="parity-percent">52%</span>
+                            </div>
+                            <span class="parity-label">奇数</span>
+                        </div>
+                        <div class="parity-item even">
+                            <div class="parity-circle">
+                                <span class="parity-percent">48%</span>
+                            </div>
+                            <span class="parity-label">偶数</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card" id="sizeAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">📐</span>
+                    <h3>大小分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="size-chart">
+                        <div class="size-item big">
+                            <div class="size-bar" style="height: 75%"></div>
+                            <span class="size-label">大号</span>
+                            <span class="size-percent">75%</span>
+                        </div>
+                        <div class="size-item small">
+                            <div class="size-bar" style="height: 25%"></div>
+                            <span class="size-label">小号</span>
+                            <span class="size-percent">25%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card wide-card" id="consecutiveAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <h3>连号分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="consecutive-stats">
+                        <div class="consecutive-item">
+                            <span class="consec-label">连号频率</span>
+                            <span class="consec-value">68%</span>
+                        </div>
+                        <div class="consecutive-item">
+                            <span class="consec-label">平均连号数</span>
+                            <span class="consec-value">1.8组</span>
+                        </div>
+                        <div class="consecutive-item">
+                            <span class="consec-label">最大连号</span>
+                            <span class="consec-value">5连号</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card" id="repeatAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">🔄</span>
+                    <h3>重号分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="repeat-stats">
+                        <div class="repeat-item">
+                            <span class="repeat-label">重号频率</span>
+                            <span class="repeat-value">45%</span>
+                        </div>
+                        <div class="repeat-item">
+                            <span class="repeat-label">平均重号数</span>
+                            <span class="repeat-value">1.2个</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card" id="acAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">🧮</span>
+                    <h3>AC值分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="ac-stats">
+                        <div class="ac-item">
+                            <span class="ac-label">当前AC值</span>
+                            <span class="ac-value">10</span>
+                        </div>
+                        <div class="ac-item">
+                            <span class="ac-label">平均AC值</span>
+                            <span class="ac-value">9.2</span>
+                        </div>
+                        <div class="ac-item">
+                            <span class="ac-label">AC值范围</span>
+                            <span class="ac-value">5-15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-card wide-card" id="spanAnalysis">
+                <div class="card-header">
+                    <span class="card-icon">📏</span>
+                    <h3>跨度分析</h3>
+                </div>
+                <div class="card-content">
+                    <div class="span-stats">
+                        <div class="span-item">
+                            <span class="span-label">当前跨度</span>
+                            <span class="span-value">28</span>
+                        </div>
+                        <div class="span-item">
+                            <span class="span-label">平均跨度</span>
+                            <span class="span-value">25.4</span>
+                        </div>
+                        <div class="span-item">
+                            <span class="span-label">跨度范围</span>
+                            <span class="span-value">15-33</span>
+                        </div>
+                    </div>
+                    <div id="spanChart" style="height: 150px; margin-top: 15px;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <p>AI彩票预测专家 Pro Max - Cyberpunk Ultimate Edition</p>
+        <p class="disclaimer">免责声明：所有AI计算仅为历史数据统计，不保证开奖结果</p>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="lib/supabase.js"></script>
+    <script src="scripts/global.js"></script>
+    <script src="scripts/analysis.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase 本地测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #00ff00; color: #000; }
+        .error { background: #ff0000; color: #fff; }
+        .info { background: #00aaff; color: #000; }
+        form {
+            background: #2a2a4e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #1a1a2e;
+            color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            background: #00aaff;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #444;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Supabase 本地加载测试</h1>
+    <div id="status"></div>
+    
+    <form id="testForm">
+        <h3>测试登录</h3>
+        <input type="email" id="testEmail" placeholder="邮箱" required>
+        <input type="password" id="testPassword" placeholder="密码" required>
+        <button type="submit" id="testBtn">测试登录</button>
+    </form>
+    
+    <script src="lib/supabase.js"></script>
+    <script>
+        function addStatus(message, type) {
+            const status = document.getElementById('status');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            status.appendChild(div);
+            // 滚动到底部
+            status.scrollTop = status.scrollHeight;
+        }
+        
+        // 检查 SDK 是否加载
+        async function checkSDK() {
+            addStatus('检查 Supabase SDK...', 'info');
+            
+            if (typeof window.supabase === 'undefined') {
+                addStatus('错误：window.supabase 未定义', 'error');
+                return false;
+            }
+            
+            addStatus(`window.supabase 类型: ${typeof window.supabase}`, 'info');
+            
+            if (typeof window.supabase.createClient !== 'function') {
+                addStatus('错误：createClient 不是函数', 'error');
+                addStatus(`createClient 类型: ${typeof window.supabase.createClient}`, 'info');
+                return false;
+            }
+            
+            addStatus('✓ Supabase SDK 加载成功！', 'success');
+            return true;
+        }
+        
+        // 尝试创建客户端
+        async function testClient() {
+            const URL = 'https://kltgecxywsajonxjsawz.supabase.co';
+            const KEY = 'sb_publishable_3C8V8U4lPZUQ0xDYFzBLWA_2I_yR6q8';
+            
+            addStatus('尝试创建 Supabase 客户端...', 'info');
+            
+            try {
+                const client = window.supabase.createClient(URL, KEY);
+                addStatus('✓ 客户端创建成功！', 'success');
+                
+                // 测试连接
+                addStatus('测试连接到 Supabase...', 'info');
+                const { data, error } = await client.auth.getSession();
+                
+                if (error) {
+                    addStatus(`连接错误: ${error.message}`, 'error');
+                } else {
+                    addStatus('✓ 成功连接到 Supabase！', 'success');
+                    addStatus(`当前会话状态: ${data.session ? '已登录' : '未登录'}`, 'info');
+                }
+                
+                return client;
+            } catch (err) {
+                addStatus(`创建客户端失败: ${err.message}`, 'error');
+                return null;
+            }
+        }
+        
+        // 测试登录功能
+        async function testLogin(client, email, password) {
+            if (!client) {
+                addStatus('客户端未就绪', 'error');
+                return;
+            }
+            
+            addStatus(`尝试登录: ${email}`, 'info');
+            
+            try {
+                const { data, error } = await client.auth.signInWithPassword({
+                    email,
+                    password
+                });
+                
+                if (error) {
+                    addStatus(`登录失败: ${error.message}`, 'error');
+                } else if (data && data.session) {
+                    addStatus('✓ 登录成功！', 'success');
+                    addStatus(`用户ID: ${data.session.user.id}`, 'info');
+                    addStatus(`邮箱: ${data.session.user.email}`, 'info');
+                    
+                    // 测试会话持久化
+                    setTimeout(async () => {
+                        const { data: { session } } = await client.auth.getSession();
+                        if (session) {
+                            addStatus('✓ 会话已持久化！', 'success');
+                        } else {
+                            addStatus('警告：会话未持久化', 'error');
+                        }
+                    }, 500);
+                }
+            } catch (err) {
+                addStatus(`登录异常: ${err.message}`, 'error');
+            }
+        }
+        
+        // 页面加载后立即测试
+        window.addEventListener('load', async () => {
+            addStatus('页面加载完成', 'info');
+            
+            // 立即检查
+            if (await checkSDK()) {
+                // 延迟一点时间确保完全加载
+                const client = await testClient();
+                
+                // 绑定测试表单
+                const form = document.getElementById('testForm');
+                const btn = document.getElementById('testBtn');
+                
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    btn.disabled = true;
+                    btn.textContent = '登录中...';
+                    
+                    const email = document.getElementById('testEmail').value;
+                    const password = document.getElementById('testPassword').value;
+                    
+                    await testLogin(client, email, password);
+                    
+                    btn.disabled = false;
+                    btn.textContent = '测试登录';
+                });
+                
+                addStatus('✓ 测试表单已就绪！', 'success');
+            } else {
+                // 重试检查
+                let retries = 20;
+                const check = setInterval(async () => {
+                    if (await checkSDK()) {
+                        clearInterval(check);
+                        await testClient();
+                    }
+                    retries--;
+                    if (retries <= 0) {
+                        clearInterval(check);
+                        addStatus('超时：SDK 加载失败', 'error');
+                    }
+                }, 200);
+            }
+        });
+    </script>
+</body>
+</html>
